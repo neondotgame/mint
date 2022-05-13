@@ -1,16 +1,17 @@
-import { useEffect, useState } from "react";
-import styled from "styled-components";
-import { Snackbar } from "@material-ui/core";
-import Alert from "@material-ui/lab/Alert";
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import { Snackbar } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
 
-import * as anchor from "@project-serum/anchor";
+import * as anchor from '@project-serum/anchor';
 
-import { LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
+import { LAMPORTS_PER_SOL, PublicKey } from '@solana/web3.js';
 
-import { useAnchorWallet } from "@solana/wallet-adapter-react";
-import { WalletDialogButton } from "@solana/wallet-adapter-material-ui";
+import { useAnchorWallet } from '@solana/wallet-adapter-react';
+import { WalletDialogButton } from '@solana/wallet-adapter-material-ui';
 import { GatewayProvider } from '@civic/solana-gateway-react';
 import { MintButton } from './MintButton';
+import characters from './characters.gif';
 
 import {
   CandyMachine,
@@ -19,12 +20,9 @@ import {
   mintOneToken,
   shortenAddress,
   CANDY_MACHINE_PROGRAM,
-} from "./candy-machine";
+} from './candy-machine';
 
-import {
-  AlertState,
-  getAtaForMint,
-} from "./utils";
+import { AlertState, getAtaForMint } from './utils';
 
 const ConnectButton = styled(WalletDialogButton)``;
 
@@ -49,7 +47,7 @@ const Home = (props: HomeProps) => {
 
   const [alertState, setAlertState] = useState<AlertState>({
     open: false,
-    message: "",
+    message: '',
     severity: undefined,
   });
 
@@ -60,7 +58,7 @@ const Home = (props: HomeProps) => {
 
   const refreshCandyMachineState = () => {
     (async () => {
-      console.log("refresh cm");
+      console.log('refresh cm');
       if (!wallet) return;
 
       const cndy = await getCandyMachineState(
@@ -81,26 +79,23 @@ const Home = (props: HomeProps) => {
         setWhitelistEnabled(true);
         let balance = 0;
         try {
-          const tokenBalance =
-            await props.connection.getTokenAccountBalance(
-              (
-                await getAtaForMint(
-                  cndy.state.whitelistMintSettings.mint,
-                  wallet.publicKey,
-                )
-              )[0],
-            );
+          const tokenBalance = await props.connection.getTokenAccountBalance(
+            (
+              await getAtaForMint(
+                cndy.state.whitelistMintSettings.mint,
+                wallet.publicKey
+              )
+            )[0]
+          );
 
           balance = tokenBalance?.value?.uiAmount || 0;
-        }
-        catch (e) {
+        } catch (e) {
           console.error(e);
           balance = 0;
         }
 
         setWhitelistTokenBalance(balance);
-      }
-      else {
+      } else {
         setWhitelistEnabled(false);
       }
     })();
@@ -122,7 +117,7 @@ const Home = (props: HomeProps) => {
             props.txTimeout,
             props.connection,
             'singleGossip',
-            true,
+            true
           );
         }
 
@@ -163,7 +158,7 @@ const Home = (props: HomeProps) => {
       setAlertState({
         open: true,
         message,
-        severity: "error",
+        severity: 'error',
       });
     } finally {
       if (wallet) {
@@ -193,7 +188,7 @@ const Home = (props: HomeProps) => {
   return (
     <main>
       {wallet && (
-        <p>Wallet {shortenAddress(wallet.publicKey.toBase58() || "")}</p>
+        <p>Wallet {shortenAddress(wallet.publicKey.toBase58() || '')}</p>
       )}
 
       {wallet && <p>Balance: {(balance || 0).toLocaleString()} SOL</p>}
@@ -204,20 +199,22 @@ const Home = (props: HomeProps) => {
 
       {wallet && <p>Remaining: {itemsRemaining}</p>}
 
-      {wallet && whitelistEnabled && <p>Whitelist token balance: {whitelistTokenBalance}</p>}
+      {wallet && whitelistEnabled && (
+        <p>Whitelist token balance: {whitelistTokenBalance}</p>
+      )}
 
-      {<MintContainer>
-        {!wallet ? (
-          <ConnectButton>Connect Wallet</ConnectButton>
-        ) :
-          candyMachine?.state.gatekeeper &&
+      <img src={characters} />
+      {
+        <MintContainer>
+          {!wallet ? (
+            <ConnectButton>Connect Wallet</ConnectButton>
+          ) : candyMachine?.state.gatekeeper &&
             wallet.publicKey &&
             wallet.signTransaction ? (
             <GatewayProvider
               wallet={{
                 publicKey:
-                  wallet.publicKey ||
-                  new PublicKey(CANDY_MACHINE_PROGRAM),
+                  wallet.publicKey || new PublicKey(CANDY_MACHINE_PROGRAM),
                 //@ts-ignore
                 signTransaction: wallet.signTransaction,
               }}
@@ -243,7 +240,8 @@ const Home = (props: HomeProps) => {
               onMint={onMint}
             />
           )}
-      </MintContainer>}
+        </MintContainer>
+      }
 
       <Snackbar
         open={alertState.open}
