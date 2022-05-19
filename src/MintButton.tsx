@@ -6,9 +6,47 @@ import { GatewayStatus, useGateway } from '@civic/solana-gateway-react';
 import { useEffect, useState } from 'react';
 import Countdown from 'react-countdown';
 import { toDate } from './utils';
+import { Spinner } from './Spinner/Spinner';
+
+//Custom cursor to follow cursor
+// const cursor = document.querySelector('.cursor');
+
+// document.addEventListener('mousemove', (e) => {
+//   if (!cursor) {
+//     return;
+//   }
+//   cursor.setAttribute(
+//     'style',
+//     'top: ' + (e.pageY - 15) + 'px; left: ' + (e.pageX - 20) + 'px;'
+//   );
+// });
+
+// //Add on click pulse effect
+// function clickEffect(e: any) {
+//   var effect = document.createElement('div');
+//   effect.className = 'cursoreffect';
+//   effect.setAttribute(
+//     'style',
+//     'top: ' + (e.pageY - 16) + 'px; left: ' + (e.pageX - 21) + 'px;'
+//   );
+//   document.body.appendChild(effect);
+//   effect.addEventListener('animationend', function () {
+//     if (!effect.parentElement) {
+//       return;
+//     }
+//     effect.parentElement.removeChild(effect);
+//   });
+// }
+// document.addEventListener('mousedown', clickEffect);
 
 export const CTAButton = styled(Button)`
-  background: bisque;
+  background: #0f1e0f;
+  box-shadow: none;
+  font-size: 20px;
+  font-family: 'Audiowide';
+  color: #54cb52;
+  border-radius: 0;
+  padding: 7px 23px;
 `; // add your styles here
 
 export const CounterText = styled.span``; // add your styles here
@@ -44,6 +82,7 @@ export const MintButton = ({
 
   return (
     <CTAButton
+      disableRipple
       disabled={
         candyMachine?.state.isSoldOut || isMinting || !isActive || isVerifying
       }
@@ -71,19 +110,22 @@ export const MintButton = ({
         isVerifying ? (
           'VERIFYING...'
         ) : isMinting ? (
-          <CircularProgress />
+          <Spinner />
         ) : (
           'MINT'
         )
       ) : candyMachine?.state.goLiveDate ? (
-        <Countdown
-          date={toDate(candyMachine?.state.goLiveDate)}
-          onMount={({ completed }) => completed && setIsActive(true)}
-          onComplete={() => {
-            setIsActive(true);
-          }}
-          renderer={renderCounter}
-        />
+        <>
+          {/* mint starts in */}
+          <Countdown
+            date={toDate(candyMachine?.state.goLiveDate)}
+            onMount={({ completed }) => completed && setIsActive(true)}
+            onComplete={() => {
+              setIsActive(true);
+            }}
+            renderer={renderCounter}
+          />
+        </>
       ) : (
         'UNAVAILABLE'
       )}
