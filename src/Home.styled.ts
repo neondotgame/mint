@@ -26,8 +26,8 @@ export const Title = styled.h1`
   letter-spacing: 1px;
   text-transform: uppercase;
   font-family: Iceland;
-  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 5px #1de900, 0 0 10px #118800,
-    0 0 5px #118800, 0 0 5px #1de900;
+  text-shadow: 0 0 5px #c0c0c0, 0 0 10px #d8d8d8, 0 0 5px #1de900,
+    0 0 10px #118800, 0 0 5px #118800, 0 0 5px #1de900;
 
   @media (min-width: 567px) {
     letter-spacing: 2px;

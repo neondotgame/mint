@@ -46,7 +46,8 @@ const MintContainer = styled.div`
     font-family: 'Audiowide';
     color: #54cb52;
     border-radius: 0;
-    padding: 7px 23px;
+    padding: 14px 23px;
+    line-height: 1;
     border-radius: 8px;
 
     &:hover {
@@ -65,6 +66,8 @@ const MintContainer = styled.div`
     padding: 10px;
     box-shadow: none;
     border-radius: 8px;
+    padding: 14px 23px;
+    line-height: 1;
 
     transition: all 0.2s ease-in-out;
 
@@ -322,20 +325,20 @@ const Home = (props: HomeProps) => {
             >
               <Styled.LinkImage src={twitter} className='external__image' />
             </Styled.Link>
-            <Styled.Link
+            {/* <Styled.Link
               href='https://magiceden.io/marketplace/neon_game'
               className='external__link'
               target='_blank'
             >
               <Styled.LinkImage src={magiceden} className='external__image' />
-            </Styled.Link>
+            </Styled.Link> */}
           </Styled.Links>
         </Styled.TitleContainer>
         <Styled.Overview>
           <Styled.NFTContainer>
             <Styled.NFTImage src={capsule} />
             <Styled.NFTTitle>Capsule</Styled.NFTTitle>
-            <Styled.NFTPrice>500, 000 $NEON</Styled.NFTPrice>
+            <Styled.NFTPrice>500,000 $NEON</Styled.NFTPrice>
           </Styled.NFTContainer>
           <Styled.Stats>
             {/* {wallet && (

@@ -46,10 +46,10 @@ export const Progress = styled.div<{
       top: 0;
       left: -20%;
       background: #53a342;
-      filter: blur(3px);
+      filter: blur(2px);
       width: 130%;
       height: 30px;
-      animation: move 2s infinite alternate;
+      animation: move 1s infinite alternate;
     }
 
     &::before {
@@ -58,10 +58,10 @@ export const Progress = styled.div<{
       top: 0;
       right: -30%;
       background: #53a342;
-      filter: blur(3px);
+      filter: blur(2px);
       width: 130%;
       height: 30px;
-      animation: move 2s infinite alternate;
+      animation: move 1s infinite alternate;
     }
 
     @keyframes move {
