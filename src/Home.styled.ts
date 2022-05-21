@@ -6,13 +6,13 @@ export const Wrapper = styled.div`
   @media (min-width: 567px) {
     width: 100%;
     max-width: 800px;
-    padding: 100px 30px;
+    padding: 20px 30px;
   }
 `;
 
 export const TitleContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   margin-bottom: 25px;
 
@@ -26,19 +26,18 @@ export const Title = styled.h1`
   letter-spacing: 1px;
   text-transform: uppercase;
   font-family: Iceland;
+  margin-bottom: 80px;
   text-shadow: 0 0 5px #c0c0c0, 0 0 10px #d8d8d8, 0 0 5px #1de900,
     0 0 10px #118800, 0 0 5px #118800, 0 0 5px #1de900;
 
   @media (min-width: 567px) {
     letter-spacing: 2px;
     font-size: 34px;
-    margin-right: 40px;
   }
 
   @media (min-width: 768px) {
     letter-spacing: 2px;
     font-size: 44px;
-    margin-right: 40px;
   }
 
   @media (min-width: 1024px) {

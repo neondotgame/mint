@@ -40,11 +40,12 @@ import { Spinner } from './Spinner/Spinner';
 // document.addEventListener('mousedown', clickEffect);
 
 export const CTAButton = styled(Button)`
-  background: #0f1e0f;
+  background: white;
+  font-weight: bold !important;
   box-shadow: none;
   font-size: 20px;
   font-family: 'Audiowide';
-  color: #54cb52;
+  color: #54cb52 !important;
   border-radius: 0;
   padding: 7px 23px;
 `; // add your styles here

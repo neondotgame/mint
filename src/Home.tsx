@@ -169,6 +169,7 @@ const Home = (props: HomeProps) => {
       setItemsRedeemed(cndy.state.itemsRedeemed);
 
       // fetch whitelist token balance
+      console.log(cndy.state.whitelistMintSettings);
       if (cndy.state.whitelistMintSettings) {
         setWhitelistEnabled(true);
         let balance = 0;
@@ -281,35 +282,8 @@ const Home = (props: HomeProps) => {
 
   return (
     <main>
-      {/* <video
-          style={{
-            position: 'fixed',
-            objectFit: 'cover',
-            width: '100vw',
-            height: '100vh',
-            zIndex: -1,
-            filter: 'blur(1px) brightness(40%)',
-          }}
-          ref={ref}
-          autoPlay
-          loop
-          muted
-          src={videoBg}
-        ></video> */}
-      {/* <img
-        src={sewerBg}
-        style={{
-          position: 'fixed',
-          objectFit: 'cover',
-          width: '100vw',
-          height: '100vh',
-          zIndex: -1,
-          filter: 'blur(1px) brightness(40%)',
-        }}
-      /> */}
       <Styled.Wrapper>
         <Styled.TitleContainer>
-          <Styled.Title>Neon Game Mint</Styled.Title>
           <Styled.Links>
             <Styled.Link
               href='https://discord.gg/dvYfNRfxET'
@@ -325,15 +299,9 @@ const Home = (props: HomeProps) => {
             >
               <Styled.LinkImage src={twitter} className='external__image' />
             </Styled.Link>
-            {/* <Styled.Link
-              href='https://magiceden.io/marketplace/neon_game'
-              className='external__link'
-              target='_blank'
-            >
-              <Styled.LinkImage src={magiceden} className='external__image' />
-            </Styled.Link> */}
           </Styled.Links>
         </Styled.TitleContainer>
+        <Styled.Title>Neon Game Mint</Styled.Title>
         <Styled.Overview>
           <Styled.NFTContainer>
             <Styled.NFTImage src={capsule} />
@@ -341,12 +309,6 @@ const Home = (props: HomeProps) => {
             <Styled.NFTPrice>500,000 $NEON</Styled.NFTPrice>
           </Styled.NFTContainer>
           <Styled.Stats>
-            {/* {wallet && (
-            <p>Wallet {shortenAddress(wallet.publicKey.toBase58() || '')}</p>
-          )} */}
-
-            {/* {wallet && <p>Balance: {(balance || 0).toLocaleString()} SOL</p>} */}
-
             {wallet ? (
               <>
                 <Styled.ProgressBarContainer>
